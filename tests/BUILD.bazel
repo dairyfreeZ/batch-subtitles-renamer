@@ -1,0 +1,27 @@
+load("@rules_python//python:defs.bzl", "py_test")
+
+py_test(
+    name = "test_utils",
+    srcs = ["test_utils.py"],
+    deps = [
+        "//src:utils",
+    ],
+)
+
+py_test(
+    name = "test_file_type_detector",
+    srcs = ["test_file_type_detector.py"],
+    deps = [
+        "//src:file_type_detector",
+    ],
+)
+
+py_test(
+    name = "test_renamer",
+    srcs = ["test_renamer.py"],
+    data = glob(["testdata/matched_subs_and_vids/**/*"]),
+    deps = [
+        "//src:renamer",
+        "@rules_python//python/runfiles",
+    ],
+)

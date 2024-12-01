@@ -1,0 +1,23 @@
+py_library(
+    name = "file_type_detector",
+    srcs = ["file_type_detector.py"],
+    visibility = ["//visibility:public"],
+)
+
+py_library(
+    name = "utils",
+    srcs = ["utils.py"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":file_type_detector",
+    ],
+)
+
+py_binary(
+    name = "renamer",
+    srcs = ["renamer.py"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":utils",
+    ],
+)
