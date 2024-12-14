@@ -39,5 +39,9 @@ eclipse-*bin/
 # User-specific .bazelrc
 user.bazelrc
 
+# Other generated artifacts should be ignored
 /build/
+/gen/
 /*.egg-info/
+*.spec
+__pycache__/

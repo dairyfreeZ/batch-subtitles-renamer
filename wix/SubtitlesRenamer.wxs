@@ -1,0 +1,46 @@
+<?include Variables.wxi?>
+
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Package Language="1033"
+    Name="$(var.ProductName)"
+    Version="$(var.ProductVersion)"
+    Manufacturer="$(var.Manufacturer)"
+    UpgradeCode="97fab94c-80c6-4d5c-bf21-01fca22c7ada"
+    InstallerVersion="200">
+
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLDIR" />
+
+    <MediaTemplate EmbedCab="yes" />
+
+    <Feature Id="ProductFeature" Title="$(var.ProductName)" Level="1">
+      <ComponentRef Id="SubtitlesRenamerExeComponent" />
+      <ComponentGroupRef Id="RightClickMenuComponents" />
+    </Feature>
+  </Package>
+
+  <Fragment>
+    <StandardDirectory Id="ProgramFiles6432Folder">
+      <Directory Id="INSTALLDIR" Name="Subtitles Renamer">
+        <Component Id="SubtitlesRenamerExeComponent" Guid="597cade0-6b3d-4639-8e28-1582966569b6">
+          <File Source="gen\exe\renamer.exe" />
+        </Component>
+      </Directory>
+    </StandardDirectory>
+  </Fragment>
+
+  <Fragment>
+    <ComponentGroup Id="RightClickMenuComponents">
+      <Component Id="RightClickMenuComponent" Guid="a6e86a49-9c97-485c-82f6-0f95a46c9c4f">
+        <RegistryKey Root="HKCR" Key="Directory\Background\shell\Rename Subtitles"
+          ForceCreateOnInstall="yes"
+          ForceDeleteOnUninstall="yes">
+          <RegistryValue Name="Icon" Type="string" Value="[INSTALLDIR]Renamer.exe" />
+          <RegistryKey Key="command" ForceCreateOnInstall="yes" ForceDeleteOnUninstall="yes">
+            <RegistryValue Type="string" Value="&quot;[INSTALLDIR]renamer.exe&quot;" />
+          </RegistryKey>
+        </RegistryKey>
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+
+</Wix>
