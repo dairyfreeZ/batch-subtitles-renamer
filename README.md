@@ -54,5 +54,5 @@ pyinstaller --onefile --name renamer --icon=resources/icon.ico --paths src --dis
 
 Package the executable to a MSI (`wix` is required), the result of which can be found under `gen/wix/`
 ```
-wix build -out gen\wix\SubtitlesRenamer.msi wix\SubtitlesRenamer.wxs
+wix build -out gen\wix\installer.msi wix\Installer.wxs
 ```
